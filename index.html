@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Phonebook App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+    
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    
+    <script src="cordova.js"></script>
+
+    <header class="app-header">
+        <a href="image/pblogo.png">
+            <img src="image/pblogo.png" alt="Phonebook" width="50" height="50">
+        </a>
+        <h1>PHONEBOOK</h1>
+    </header>
+
+    <div class="app-layout">
+        <main class="app-container">
+            <section class="card">
+                <h2>Create New Contact</h2>
+                <form id="contactForm" autocomplete="off">
+                    <label for="firstname">First Name</label>
+                    <input id="firstname" type="text" placeholder="Enter First Name" required />
+
+                    <label for="lastname">Last Name</label>
+                    <input id="lastname" type="text" placeholder="Enter Last Name" required />
+
+                    <label for="company">Company</label>
+                    <input id="company" type="text" placeholder="Enter Company" />
+
+                    <label for="phone">Phone</label>
+                    <input id="phone" type="tel" placeholder="Enter phone number" required />
+
+                    <button type="submit" class="btn-primary">Add Contact</button>
+                </form>
+            </section>
+
+            <section class="card">
+                <h2>Search</h2>
+                <input
+                    id="search"
+                    type="text"
+                    placeholder="Search by First Name"
+                    autocomplete="off"
+                />
+
+                <div class="table-responsive">
+                    <table id="contactTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contactList">
+                            </tbody>
+                    </table>
+                </div>
+                <p id="emptyState" class="empty-state">No contacts found.</p>
+            </section>
+        </main>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content card">
+            <span class="close-btn" onclick="closeEditModal()">&times;</span>
+            <h2>Edit Contact</h2>
+            <form id="editForm">
+                <input type="hidden" id="edit_id"> 
+                
+                <label>First Name</label>
+                <input type="text" id="edit_firstname" required>
+
+                <label>Last Name</label>
+                <input type="text" id="edit_lastname" required>
+
+                <label>Company</label>
+                <input type="text" id="edit_company">
+
+                <label>Phone</label>
+                <input type="tel" id="edit_phone" required>
+
+                <div class="form-actions" style="margin-top: 15px; display: flex; gap: 10px;">
+                    <button type="button" onclick="closeEditModal()" class="btn-delete" style="background:#ccc; color:#000;">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js" defer></script>
+</body>
+</html>
